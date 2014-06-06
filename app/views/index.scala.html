@@ -1,0 +1,28 @@
+@(companies: List[Company], companyForm: Form[Company]) 
+
+@import helper._
+
+@main("Companies") {
+  
+  <h1>@companies.size() task(s)</h1>
+  
+  <ul>
+    @for(company <- companies) {
+      <li>@company.name / @if(company.hasAttachment()) {<a href="@routes.Application.getAttachment(company.id.toString())">attachment</a>}
+      @form(routes.Application.deleteCompany(company.id.toString())) { 
+         <input type="submit" value="Delete"> 
+      }
+      </li>
+    }
+  </ul>
+  
+  <h2>Add a new company</h2>
+  
+  @form(routes.Application.newCompany(), 'enctype -> "multipart/form-data") {
+     @inputText(companyForm("name"))
+     @inputFile(companyForm("attachment"))
+     <input type="submit" value="Create">
+  
+  } 
+
+}

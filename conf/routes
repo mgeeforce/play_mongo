@@ -1,0 +1,14 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+
+GET		/companies					controllers.Application.companies()
+POST	/companies					controllers.Application.newCompany()
+POST	/company/:id/delete			controllers.Application.deleteCompany(id: String)
+GET		/company/:id/attachment		controllers.Application.getAttachment(id: String)
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file)
+#GET     /webjars/*file              controllers.WebJarAssets.at(file)
